@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RAP_View
+Bundle-SymbolicName: RAP_View;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.enclave.training.rap.Activator
+Require-Bundle: org.eclipse.rap.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.rap.ui.forms;bundle-version="2.3.0",
+ org.eclipse.rap.ui.views;bundle-version="2.3.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Import-Package: com.christopher.jpa.entitis,
+ com.christopher.jpa.util

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JPA_DB
+Bundle-SymbolicName: JPA_DB;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.christopher.jpa.util.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.osgi.framework;version="1.3.0"
+Export-Package: com.christopher.jpa.util,
+ com.christopher.jpa.entitis
+Bundle-ClassPath: .,
+ META-INF/libs/eclipselink-2.6.0-M3.jar,
+ META-INF/libs/javax.persistence-2.1.0.jar,
+ META-INF/libs/mysql-connector-java-5.1.32-bin.jar
