@@ -20,7 +20,7 @@ import com.enclave.training.rap.views.internal.TreeLabelProvider;
 
 public class TreeView extends ViewPart {
     public final static String TREE_VIEW = "com.demo.views.treeView";
-    private TreeViewer treeViewer;
+    public TreeViewer treeViewer;
     private IPropertySheetPage propertyPage;
     private FilteredTree filter;
     private MenuManager menuManager;

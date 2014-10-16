@@ -8,12 +8,11 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import com.christopher.jpa.entitis.Customer;
 import com.christopher.jpa.entitis.Project;
 import com.christopher.jpa.entitis.Version;
 import com.enclave.training.rap.views.TreeView;
 
-public class ProjectHandle extends AbstractHandler {
+public class CreateVersionHandle extends AbstractHandler {
 
     @Override
     public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -28,13 +27,12 @@ public class ProjectHandle extends AbstractHandler {
                 if (element instanceof Version) {
                     Version version = (Version) element;
                     Project project = version.getProject();
-                    Customer customer = project.getCustomer();
-                    customer.getProjects().add(project);
-                    treeView.treeViewer.refresh(customer);
+                    project.getVersions().add(version);
+                    treeView.treeViewer.refresh(project);
                 }
             }
         }
-
         return null;
     }
+
 }

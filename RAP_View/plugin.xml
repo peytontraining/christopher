@@ -76,6 +76,16 @@
             id="com.enclave.rap.handles.new_project"
             name="New Project">
       </command>
+      <command
+            defaultHandler="com.enclave.training.rap.handles.DeleteHandle"
+            id="com.enclave.rap.handles.delete"
+            name="Delete">
+      </command>
+      <command
+            defaultHandler="com.enclave.training.rap.handles.CreateVersionHandle"
+            id="com.enclave.rap.handles.newVersion"
+            name="New Version">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.views">
@@ -360,32 +370,63 @@
                icon="icons/add.png"
                label="New Project"
                style="push">
+               
+               <visibleWhen>
+                   <with variable="activeMenuSelection">
+                      <iterate ifEmpty="false">
+                        <instanceof value="com.christopher.jpa.entitis.Version" />
+                      </iterate>
+                   </with>
+            </visibleWhen>
          </command>
          <separator
                name="RAP_View.separator1"
                visible="true">
          </separator>
          <command
-               commandId="demo.say.hello"
+               commandId="com.enclave.rap.handles.newVersion"
                icon="icons/clone_version.png"
                label="New Version"
                style="push">
+               
+               <visibleWhen>
+                   <with variable="activeMenuSelection">
+                      <iterate ifEmpty="false">
+                        <instanceof value="com.christopher.jpa.entitis.Version" />
+                      </iterate>
+                   </with>
+            </visibleWhen>
          </command>
          <command
                commandId="demo.say.hello"
                icon="icons/save_as.png"
                label="Save As"
                style="push">
+               
+                <visibleWhen>
+                   <with variable="activeMenuSelection">
+                      <iterate ifEmpty="false">
+                        <instanceof value="com.christopher.jpa.entitis.Version" />
+                      </iterate>
+                   </with>
+                </visibleWhen>
          </command>
          <separator
                name="RAP_View.separator2"
                visible="true">
          </separator>
          <command
-               commandId="demo.say.hello"
+               commandId="com.enclave.rap.handles.delete"
                icon="icons/remove.png"
                label="Delete"
                style="push">
+               <visibleWhen>
+                   <with variable="activeMenuSelection">
+                      <iterate ifEmpty="false">
+                        <instanceof value="com.christopher.jpa.entitis.Version" />
+                      </iterate>
+                   </with>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>

@@ -55,4 +55,12 @@ public class Project {
     public String toString() {
         return name;
     }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 }
