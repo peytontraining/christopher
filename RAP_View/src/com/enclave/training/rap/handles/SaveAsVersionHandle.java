@@ -45,23 +45,21 @@ public class SaveAsVersionHandle extends AbstractHandler {
                                 }
                             });
                     if (dialog.OK == dialog.open()) {
-                        Version newVersion = new Version();
-                        newVersion.setName(dialog.getValue());
-                        newVersion.setProject(project);
+                        version.setId(0);
+                        version.setName(dialog.getValue());
+                        version.setProject(project);
                         List<Device> devices = new ArrayList<Device>();
                         for (Device device : version.getDevices()) {
                             device.setId(0);
-                            device.setVersion(newVersion);
-                            devices.add(device);
                         }
-                        newVersion.setDevices(devices);
-                        newVersion.setTargetVersion(version.getTargetVersion());
-                        newVersion.setDeploySource(version.getDeploySource());
+                        // version.setDevices(devices);
+                        version.setTargetVersion(version.getTargetVersion());
+                        version.setDeploySource(version.getDeploySource());
 
-                        project.getVersions().add(newVersion);
+                        project.getVersions().add(version);
 
                         // Insert new version to DB
-                        DataUpdater.insert(newVersion);
+                        DataUpdater.insert(version);
 
                         treeView.treeViewer.refresh(project);
                     }
