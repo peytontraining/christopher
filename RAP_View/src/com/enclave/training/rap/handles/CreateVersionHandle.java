@@ -27,7 +27,23 @@ public class CreateVersionHandle extends AbstractHandler {
                 if (element instanceof Version) {
                     Version version = (Version) element;
                     Project project = version.getProject();
-                    project.getVersions().add(version);
+
+                    Version newVersion = new Version();
+                    newVersion.setName("0.0.0");
+                    newVersion.setProject(project);
+
+                    project.getVersions().add(newVersion);
+                    treeView.treeViewer.refresh(project);
+                }
+
+                if (element instanceof Project) {
+                    Project project = (Project) element;
+
+                    Version newVersion = new Version();
+                    newVersion.setName("0.0.0");
+                    newVersion.setProject(project);
+
+                    project.getVersions().add(newVersion);
                     treeView.treeViewer.refresh(project);
                 }
             }

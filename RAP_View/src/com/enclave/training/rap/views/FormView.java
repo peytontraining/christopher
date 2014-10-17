@@ -2,7 +2,6 @@ package com.enclave.training.rap.views;
 
 import java.text.SimpleDateFormat;
 
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.rap.rwt.RWT;
@@ -11,7 +10,6 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -47,7 +45,7 @@ public class FormView extends ViewPart {
 
     private FormToolkit toolkit;
     private ScrolledForm form;
-    
+
     Version version;
 
     Composite composite;
@@ -59,25 +57,29 @@ public class FormView extends ViewPart {
         composite = parent;
         createSelected();
         createForm(parent);
-        
+
         item = new ToolItem(toolBar, SWT.PUSH);
         item.setImage(ImageUtil.IMG_SAVE);
         item.setEnabled(false);
         item.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                if(version != null) {
+                if (version != null) {
                     version.setName(tVersion.getText());
                     DataUpdater.update(version);
+                    TreeView treeView = (TreeView) PlatformUI.getWorkbench()
+                            .getActiveWorkbenchWindow()
+                            .getActivePage().findView(TreeView.TREE_VIEW);
+                    treeView.treeViewer.refresh(version.getProject());
                     item.setEnabled(false);
                 }
             }
         });
         item.setToolTipText("Save(Ctrl+S)");
-        
-        //Listen modify action
+
+        // Listen modify action
         tVersion.addModifyListener(new ModifyListener() {
-            
+
             @Override
             public void modifyText(ModifyEvent event) {
                 item.setEnabled(true);
@@ -99,7 +101,8 @@ public class FormView extends ViewPart {
         selectionService.addSelectionListener(new ISelectionListener() {
 
             @Override
-            public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+            public void selectionChanged(IWorkbenchPart part,
+                    ISelection selection) {
                 IStructuredSelection structuredSelection = (IStructuredSelection) selection;
                 Object element = structuredSelection.getFirstElement();
                 if (element != null) {
@@ -112,8 +115,10 @@ public class FormView extends ViewPart {
                         tTargetVersion.setText("" + version.getTargetVersion());
 
                         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss.S");
-                        tSaveTime.setText(dateFormat.format(version.getDeployTime()));
-                        tDeployTime.setText(dateFormat.format(version.getSaveTime()));
+                        if (version.getDeployTime() != null)
+                            tSaveTime.setText(dateFormat.format(version.getDeployTime()));
+                        if (version.getSaveTime() != null)
+                            tDeployTime.setText(dateFormat.format(version.getSaveTime()));
                         item.setEnabled(false);
                     }
                 }
@@ -127,10 +132,8 @@ public class FormView extends ViewPart {
         toolkit = new FormToolkit(composite.getDisplay());
         form = toolkit.createScrolledForm(composite);
         form.getBody().setLayout(new FillLayout());
-//        Section section = toolkit.createSection(form.getBody(), Section.TITLE_BAR
-//                | Section.DESCRIPTION);
-        
-        Section section = new Section(form.getBody(), Section.TITLE_BAR | Section.DESCRIPTION);
+
+        Section section = toolkit.createSection(form.getBody(), Section.TITLE_BAR | Section.COMPACT);
         section.setText("Version Properties");
 
         Composite content = new Composite(section, SWT.NONE);
@@ -175,7 +178,6 @@ public class FormView extends ViewPart {
         toolBar = new ToolBar(section, SWT.NONE);
         section.setTextClient(toolBar);
         section.setClient(content);
-        
-    }
 
+    }
 }

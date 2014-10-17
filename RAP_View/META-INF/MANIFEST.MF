@@ -12,3 +12,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: com.christopher.jpa.entitis,
  com.christopher.jpa.util
+Bundle-ClassPath: .

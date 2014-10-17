@@ -29,7 +29,29 @@ public class ProjectHandle extends AbstractHandler {
                     Version version = (Version) element;
                     Project project = version.getProject();
                     Customer customer = project.getCustomer();
-                    customer.getProjects().add(project);
+                    Project newProject = new Project();
+                    newProject.setName("UNKNOW");
+                    newProject.setCustomer(customer);
+                    customer.getProjects().add(newProject);
+                    treeView.treeViewer.refresh(customer);
+                }
+
+                if (element instanceof Project) {
+                    Project project = (Project) element;
+                    Customer customer = project.getCustomer();
+                    Project newProject = new Project();
+                    newProject.setName("UNKNOW");
+                    newProject.setCustomer(customer);
+                    customer.getProjects().add(newProject);
+                    treeView.treeViewer.refresh(customer);
+                }
+
+                if (element instanceof Customer) {
+                    Customer customer = (Customer) element;
+                    Project newProject = new Project();
+                    newProject.setName("UNKNOW");
+                    newProject.setCustomer(customer);
+                    customer.getProjects().add(newProject);
                     treeView.treeViewer.refresh(customer);
                 }
             }

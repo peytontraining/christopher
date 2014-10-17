@@ -4,12 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import com.christopher.jpa.entitis.Version;
-
 public class DataUpdater {
 
     private static EntityManagerFactory factory;
-    private static EntityManager        manager;
+    private static EntityManager manager;
 
     private static void openConnection() {
         factory = Persistence.createEntityManagerFactory("persistenceUnit");
@@ -33,10 +31,10 @@ public class DataUpdater {
         closeConnection();
     }
 
-    public static void deleteVersion(Version entity) {
+    public static void deleteVersion(Object entity) {
         openConnection();
-        Version object = manager.find(Version.class, entity.getId());
-        manager.remove(object);
+        entity = manager.merge(entity);
+        manager.remove(entity);
         manager.getTransaction().commit();
         closeConnection();
     }

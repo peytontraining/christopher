@@ -37,7 +37,7 @@ public class Version {
 
     private boolean deploy = false;
 
-    @OneToMany(mappedBy = "version", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "version", cascade = CascadeType.ALL)
     private List<Device> devices = new ArrayList<Device>();
 
     @PrePersist
@@ -84,6 +84,7 @@ public class Version {
         this.devices = devices;
     }
 
+    @Override
     public String toString() {
         return name;
     }
