@@ -80,6 +80,7 @@ public class Device {
         this.manutacturer = manutacturer;
     }
 
+    @Override
     public String toString() {
         return name;
     }

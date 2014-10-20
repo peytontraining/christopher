@@ -22,13 +22,14 @@ public class DataUpdater {
             factory.close();
     }
 
-    public static void update(Object entity) {
+    public static <T> T update(T entity) {
         openConnection();
 
-        manager.merge(entity);
+        T result = manager.merge(entity);
         manager.getTransaction().commit();
 
         closeConnection();
+        return result;
     }
 
     public static void deleteVersion(Object entity) {

@@ -19,7 +19,7 @@ public class Customer {
 
     private String name;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Project> projects = new ArrayList<Project>();
 
     // Getter and Setter

@@ -32,6 +32,9 @@ public class ProjectHandle extends AbstractHandler {
                     Project newProject = new Project();
                     newProject.setName("UNKNOW");
                     newProject.setCustomer(customer);
+                    Version newVersion = new Version();
+                    newVersion.setName("1.0.0");
+                    newProject.getVersions().add(newVersion);
                     customer.getProjects().add(newProject);
                     treeView.treeViewer.refresh(customer);
                 }
@@ -42,6 +45,9 @@ public class ProjectHandle extends AbstractHandler {
                     Project newProject = new Project();
                     newProject.setName("UNKNOW");
                     newProject.setCustomer(customer);
+                    Version newVersion = new Version();
+                    newVersion.setName("1.0.0");
+                    newProject.getVersions().add(newVersion);
                     customer.getProjects().add(newProject);
                     treeView.treeViewer.refresh(customer);
                 }
@@ -51,6 +57,9 @@ public class ProjectHandle extends AbstractHandler {
                     Project newProject = new Project();
                     newProject.setName("UNKNOW");
                     newProject.setCustomer(customer);
+                    Version newVersion = new Version();
+                    newVersion.setName("1.0.0");
+                    newProject.getVersions().add(newVersion);
                     customer.getProjects().add(newProject);
                     treeView.treeViewer.refresh(customer);
                 }

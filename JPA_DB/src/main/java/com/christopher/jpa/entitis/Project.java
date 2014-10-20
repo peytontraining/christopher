@@ -23,7 +23,7 @@ public class Project {
     @ManyToOne
     private Customer customer;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     @OrderBy("name DESC")
     private List<Version> versions = new ArrayList<Version>();
 

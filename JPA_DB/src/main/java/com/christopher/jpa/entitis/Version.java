@@ -32,7 +32,7 @@ public class Version {
 
     private Date saveTime;
 
-    @Column(columnDefinition = "default ''")
+    @Column(columnDefinition = "default '2.x'")
     private String targetVersion;
 
     private boolean deploy = false;
